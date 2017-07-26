@@ -1,0 +1,21 @@
+version: '2'
+networks:
+  weberhome_lan:
+    external: true
+services:
+  mosuqitto:
+    image: eclipse-mosquitto
+    container_name: mqtt
+    restart: always
+    networks:
+      - weberhome_lan
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /srv/docker/mqtt:/mosquitto:ro
+    labels:
+      - "traefik.backend=mqtt"
+      - "traefik.port=1883" 
+      - "traefik.frontend.rule=Host:mqtt, mqtt.weberhome.lan"
