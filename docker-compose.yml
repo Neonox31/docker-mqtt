@@ -15,3 +15,8 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /srv/docker/mqtt:/mosquitto:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=mosquitto"
+      - "traefik.port=1883"
+      - "traefik.frontend.rule=Host:mqtt.weberhome.lan, mqtt"
