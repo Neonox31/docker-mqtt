@@ -14,7 +14,7 @@ services:
       - "9001:9001"
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /srv/docker/mqtt:/mosquitto:ro
+      - /srv/docker/mqtt:/mosquitto:rw
     labels:
       - "traefik.enable=true"
       - "traefik.backend=mosquitto"
